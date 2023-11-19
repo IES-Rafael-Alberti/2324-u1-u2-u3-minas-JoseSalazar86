@@ -43,12 +43,14 @@ def celdasVacias():
     '''
     Las celdas sin minas ni números adyacentes son "vacías".
     '''
-def revelarCelda():
+def revelarCelda(fila,columna,tableroInicial):
     '''
     celdaVacia = ""
     mina ="*"
     numero = 0
     '''
+    if tableroInicial[fila][columna] =='.':
+        numeros(fila,columna)
 def numeros(tableroInicial):
     '''
     Las celdas sin minas muestran el número de minas en las celdas adyacentes.
@@ -82,34 +84,7 @@ def jugar():
     Esta función ejecuta el juego.
 
     """
-    while True:
-        imprimirTablero(tableroInicial)
-        print("Elige una acción:")
-        print("1. Revelar celda")
-        print("2. Marcar celda")
-        print("3. Salir")
-
-        eleccion = input("Tu elección: ")
-
-        if eleccion == '1':
-            fila, columna = map(int, input("Ingresa coordenadas (fila, columna): ").split(','))
-            if revelarCelda(tablero, fila, columna, celdas_reveladas):
-                print("¡Has encontrado una mina! ¡Juego terminado!")
-                break
-            if verificar_victoria(tablero, celdas_reveladas, minas):
-                print("¡Felicidades! Has despejado la isla sin detonar ninguna mina. ¡Victoria!")
-                break
-        elif eleccion == '2':
-            fila, columna = map(int, input("Ingresa coordenadas (fila, columna): ").split(','))
-            marcar_celda(tablero, fila, columna, celdas_marcadas)
-        elif eleccion == '3':
-            print("¡Adiós! Gracias por jugar.")
-            break
-        else:
-            print("Opción no válida. Inténtalo de nuevo.")
-    tableroInicial = iniciaTablero(8, 8)
-    rellenarMinas(tableroInicial)
-    numeros(tableroInicial)
+    
     
 if __name__ == "__main__":
     """
